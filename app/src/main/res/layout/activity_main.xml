@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.calculatoruidemo.view.data.CalculatorActions" />
+
+        <variable
+            name="listener"
+            type="com.example.calculatoruidemo.view.listener.CalculatorActionListener" />
+
+        <variable
+            name="inputText"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/calculation_text_area"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:focusable="false"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@{inputText}"
+            android:textColor="@android:color/black"
+            android:textDirection="rtl"
+            android:textSize="56sp"
+            app:layout_constraintBottom_toTopOf="@id/top_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="Autofill,LabelFor" />
+
+        <View
+            android:id="@+id/top_divider"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/gray_300"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_level_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="btn_ac,btn_back,btn_mod,btn_divide" />
+
+        <TextView
+            android:id="@+id/btn_ac"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorResetPress()}"
+            android:text="@string/ac"
+            android:textColor="@color/orange_600"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_3"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_back"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> listener.onCalculatorBackKeyPress()}"
+            android:padding="22dp"
+            android:src="@drawable/ic_outline_backspace"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_3"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_mod"
+            app:layout_constraintStart_toEndOf="@id/btn_ac"
+            app:tint="@color/orange_600"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/btn_mod"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorActionKeyPress(CalculatorActions.MODULUS)}"
+            android:text="@string/modulus"
+            android:textColor="@color/orange_600"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_3"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_divide"
+            app:layout_constraintStart_toEndOf="@id/btn_back" />
+
+        <TextView
+            android:id="@+id/btn_divide"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorActionKeyPress(CalculatorActions.DIVISION)}"
+            android:text="@string/divide"
+            android:textColor="@color/orange_600"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_3"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_mod" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_level_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="btn_7,btn_8,btn_9,btn_multiply" />
+
+        <TextView
+            android:id="@+id/btn_7"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('7')}"
+            android:text="@string/num_7"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_2"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_8"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_8"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('8')}"
+            android:text="@string/num_8"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_2"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_9"
+            app:layout_constraintStart_toEndOf="@id/btn_7" />
+
+        <TextView
+            android:id="@+id/btn_9"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('9')}"
+            android:text="@string/num_9"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_2"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_multiply"
+            app:layout_constraintStart_toEndOf="@id/btn_8" />
+
+        <ImageView
+            android:id="@+id/btn_multiply"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> listener.onCalculatorActionKeyPress(CalculatorActions.MULTIPLICATION)}"
+            android:padding="20dp"
+            android:src="@drawable/ic_round_close"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_2"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_9"
+            app:tint="@color/orange_600"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_level_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="btn_4,btn_5,btn_6,btn_minus" />
+
+        <TextView
+            android:id="@+id/btn_4"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('4')}"
+            android:text="@string/num_4"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_1"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_5"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('5')}"
+            android:text="@string/num_5"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_1"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_6"
+            app:layout_constraintStart_toEndOf="@id/btn_4" />
+
+        <TextView
+            android:id="@+id/btn_6"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('6')}"
+            android:text="@string/num_6"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_1"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_minus"
+            app:layout_constraintStart_toEndOf="@id/btn_5" />
+
+        <ImageView
+            android:id="@+id/btn_minus"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> listener.onCalculatorActionKeyPress(CalculatorActions.SUBTRACTION)}"
+            android:padding="20dp"
+            android:src="@drawable/ic_round_remove"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_1"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_6"
+            app:tint="@color/orange_600"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_level_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="btn_1,btn_2,btn_3,btn_add" />
+
+        <TextView
+            android:id="@+id/btn_1"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('1')}"
+            android:text="@string/num_1"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_0"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_2"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('2')}"
+            android:text="@string/num_2"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_0"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_3"
+            app:layout_constraintStart_toEndOf="@id/btn_1" />
+
+        <TextView
+            android:id="@+id/btn_3"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('3')}"
+            android:text="@string/num_3"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_0"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_add"
+            app:layout_constraintStart_toEndOf="@id/btn_2" />
+
+        <ImageView
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> listener.onCalculatorActionKeyPress(CalculatorActions.ADDITION)}"
+            android:padding="20dp"
+            android:src="@drawable/ic_round_add"
+            app:layout_constraintBottom_toTopOf="@id/barrier_level_0"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_3"
+            app:tint="@color/orange_600"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_level_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="btn_switch,btn_0,button_dot,btn_equal" />
+
+        <ImageView
+            android:id="@+id/btn_switch"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:padding="20dp"
+            android:src="@drawable/ic_baseline_crop_rotate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/orange_600"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/btn_0"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('0')}"
+            android:text="@string/num_0"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/button_dot"
+            app:layout_constraintStart_toEndOf="@id/btn_switch" />
+
+        <TextView
+            android:id="@+id/button_dot"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:onClick="@{() -> listener.onCalculatorNumKeyPress('.')}"
+            android:text="@string/dot"
+            android:textColor="@android:color/black"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_equal"
+            app:layout_constraintStart_toEndOf="@id/btn_0" />
+
+        <TextView
+            android:id="@+id/btn_equal"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_round_orange"
+            android:gravity="center"
+            android:text="@string/equals"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/button_dot" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
